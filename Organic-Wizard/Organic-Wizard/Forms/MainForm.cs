@@ -28,9 +28,9 @@ namespace Organic_Wizard
 
         public MainForm()
         {
+            InitializeComponent();
             SavedData.Init();
             _logicEngine = new LogicEngine();
-            InitializeComponent();
         }
 
         protected  async override void OnLoad(EventArgs e)
@@ -83,16 +83,16 @@ namespace Organic_Wizard
         {
             try
             {
-                using (var mgr = new UpdateManager(@"https://github.com/clauderoy790/Organic-Wizard/releases/latest"))
+                using (var mgr = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard"))
                 {
-                    var entry = await mgr.UpdateApp();
+                    var entry = await mgr.Result.UpdateApp();
                     if (entry != null)
                         MessageBox.Show($"Successfully updated to version: { entry.Version}! You may restart the app to get the newest features.", "Update Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while trying to update, try again later. Error: " + ex.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show($"An error occurred while trying to update, try again later.{Environment.NewLine}Error: " + ex.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
