@@ -86,6 +86,7 @@
             this.btnStartStop = new System.Windows.Forms.Button();
             this.btnDebug = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tpAttack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkRecoverySkillPercent)).BeginInit();
@@ -109,6 +110,7 @@
             // 
             // tpAttack
             // 
+            this.tpAttack.Controls.Add(this.checkBox2);
             this.tpAttack.Controls.Add(this.lblUseRecSkillPercent);
             this.tpAttack.Controls.Add(this.btnRecSkillBarPlus);
             this.tpAttack.Controls.Add(this.trkRecoverySkillPercent);
@@ -775,6 +777,16 @@
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(340, 299);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(150, 29);
+            this.checkBox2.TabIndex = 20;
+            this.checkBox2.Text = "checkBox2";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -863,5 +875,6 @@
         private System.Windows.Forms.TextBox txtSuppSkill1;
         private System.Windows.Forms.Button btnDebug;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
