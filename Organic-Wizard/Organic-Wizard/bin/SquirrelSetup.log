@@ -1,0 +1,7 @@
+﻿2020-07-17 06:10:36> Program: Starting Squirrel Updater: --install 'https://github.com/clauderoy790/Organic-Wizard'
+2020-07-17 06:10:36> Unhandled exception: System.NotSupportedException: The given path's format is not supported.
+   at System.Security.Permissions.FileIOPermission.EmulateFileIOPermissionChecks(String fullPath)
+   at System.Security.Permissions.FileIOPermission.QuickDemand(FileIOPermissionAccess access, String fullPath, Boolean checkForDuplicates, Boolean needFullPath)
+   at System.IO.Path.GetFullPath(String path)
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
