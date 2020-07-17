@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Squirrel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Organic_Wizard
@@ -11,8 +14,34 @@ namespace Organic_Wizard
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static async Task Main()
         {
+            Task<UpdateManager> mgrTask = null;
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                mgrTask = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard");
+                //using (var mgr = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard"))
+                //{
+                var resultTask = mgrTask.Result;
+                var entry = await resultTask.UpdateApp();
+                if (entry != null)
+                {
+
+                        MessageBox.Show($"Successfully updated to version: { entry.Version}! You may restart the app to get the newest features.", "Update Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                //}
+            }
+            catch (Exception ex)
+            {
+
+                    MessageBox.Show($"An error occurred while trying to update, try again later.{Environment.NewLine}Error: " + ex.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                if (mgrTask != null && mgrTask.Result != null)
+                    mgrTask.Result.Dispose();
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

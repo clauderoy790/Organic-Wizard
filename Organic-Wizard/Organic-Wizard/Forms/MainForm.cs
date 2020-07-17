@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,13 +82,16 @@ namespace Organic_Wizard
             _loadDone = true;
         }
 
-        private async Task CheckForUpdates()
+        public async Task CheckForUpdates()
         {
+            Task<UpdateManager> mgrTask = null;
             try
             {
-                using (var mgr = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard"))
-                {
-                    var entry = await mgr.Result.UpdateApp();
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                mgrTask = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard");
+                //using (var mgr = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard"))
+                //{
+                    var entry = await mgrTask.Result.UpdateApp();
                     if (entry != null)
                     {
                         InvokeUI(() =>
@@ -95,7 +99,7 @@ namespace Organic_Wizard
                             MessageBox.Show($"Successfully updated to version: { entry.Version}! You may restart the app to get the newest features.", "Update Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         });
                     }
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -103,6 +107,11 @@ namespace Organic_Wizard
                 {
                     MessageBox.Show($"An error occurred while trying to update, try again later.{Environment.NewLine}Error: " + ex.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 });
+            }
+            finally
+            {
+                if (mgrTask != null && mgrTask.Result != null)
+                    mgrTask.Result.Dispose();
             }
         }
 
