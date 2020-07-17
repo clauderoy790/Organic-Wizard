@@ -1,6 +1,3 @@
-Organic-Wizard/ColorTool/bin/
-Organic-Wizard/Shared/bin/
-Organic-Wizard/Organic-Wizard/bin/debug/
+bin/
 obj/
 node_modules/
-*.pdb
