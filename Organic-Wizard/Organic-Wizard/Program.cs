@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,6 +25,8 @@ namespace Organic_Wizard
                 //using (var mgr = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard"))
                 //{
                 var updateManager = mgrTask.Result;
+                var updates = await updateManager.CheckForUpdate();
+                var dir = updates.PackageDirectory;
                 MessageBox.Show($"Update: Appname:{ updateManager.ApplicationName}{Environment.NewLine}, root dir:{updateManager.RootAppDirectory}{Environment.NewLine}", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 var entry = await updateManager.UpdateApp();
                 if (entry != null)
