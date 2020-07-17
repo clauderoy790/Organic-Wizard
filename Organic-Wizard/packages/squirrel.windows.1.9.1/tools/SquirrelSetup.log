@@ -53,3 +53,40 @@ File name: 'OrganicWizard.1.0.0.nupkg'
 2020-07-16 21:13:41> ReleasePackage: Removing unnecessary data
 2020-07-16 21:13:41> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
 2020-07-16 21:13:42> Program: Building embedded zip file for Setup.exe
+2020-07-16 21:34:59> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.1.nupkg
+2020-07-16 21:34:59> Program: Bootstrapper EXE found at:C:\Git\Organic-Wizard\Organic-Wizard\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-16 21:34:59> Program: Creating release package: C:\Git\Organic-Wizard\Organic-Wizard\Releases\OrganicWizard.1.0.1.nupkg
+2020-07-16 21:34:59> ReleasePackage: Creating release package: C:\Git\Organic-Wizard\Organic-Wizard\Releases\OrganicWizard.1.0.1.nupkg => C:\Git\Organic-Wizard\Organic-Wizard\Releases\OrganicWizard-1.0.1-full.nupkg
+2020-07-16 21:35:01> ReleasePackage: Extracting dependent packages: []
+2020-07-16 21:35:01> ReleasePackage: Removing unnecessary data
+2020-07-16 21:35:01> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
+2020-07-16 21:35:02> DeltaPackageBuilder: Extracting .\Releases\OrganicWizard-1.0.0-full.nupkg and C:\Git\Organic-Wizard\Organic-Wizard\Releases\OrganicWizard-1.0.1-full.nupkg into C:\Users\Claud\AppData\Local\SquirrelTemp\tempb
+2020-07-16 21:35:02> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2020-07-16 21:35:02> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2020-07-16 21:35:02> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2020-07-16 21:35:02> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2020-07-16 21:35:02> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2020-07-16 21:35:03> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2020-07-16 21:35:03> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2020-07-16 21:35:03> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2020-07-16 21:35:03> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.pdb not found in base package, marking as new
+2020-07-16 21:35:03> DeltaPackageBuilder: Delta patching C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\lib\net45\Organic-Wizard.exe => C:\Users\Claud\AppData\Local\SquirrelTemp\tempb\lib\net45\Organic-Wizard.exe
+2020-07-16 21:35:03> DeltaPackageBuilder: \lib\net45\Organic-Wizard.exe.config hasn't changed, writing dummy file
+2020-07-16 21:35:03> DeltaPackageBuilder: Delta patching C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\lib\net45\Organic-Wizard.pdb => C:\Users\Claud\AppData\Local\SquirrelTemp\tempb\lib\net45\Organic-Wizard.pdb
+2020-07-16 21:35:03> DeltaPackageBuilder: We really couldn't create a delta for Organic-Wizard.pdb: System.DivideByZeroException: Attempted to divide by zero.
+   at Squirrel.Bsdiff.BinaryPatchUtility.Create(Byte[] oldData, Byte[] newData, Stream output)
+   at Squirrel.DeltaPackageBuilder.createDeltaForSingleFile(FileInfo targetFile, DirectoryInfo workingDirectory, Dictionary`2 baseFileListing)
+2020-07-16 21:35:03> DeltaPackageBuilder: Delta patching C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\lib\net45\Organic-Wizard_ExecutionStub.exe => C:\Users\Claud\AppData\Local\SquirrelTemp\tempb\lib\net45\Organic-Wizard_ExecutionStub.exe
+2020-07-16 21:35:03> DeltaPackageBuilder: \lib\net45\Shared.dll hasn't changed, writing dummy file
+2020-07-16 21:35:03> DeltaPackageBuilder: \lib\net45\Shared.pdb not found in base package, marking as new
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\Splat.pdb not found in base package, marking as new
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\Squirrel.pdb not found in base package, marking as new
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\Tesseract.dll hasn't changed, writing dummy file
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\x64\liblept1753.dll hasn't changed, writing dummy file
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\x64\libtesseract3052.dll hasn't changed, writing dummy file
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\x86\liblept1753.dll hasn't changed, writing dummy file
+2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\x86\libtesseract3052.dll hasn't changed, writing dummy file
+2020-07-16 21:35:05> Program: Building embedded zip file for Setup.exe
