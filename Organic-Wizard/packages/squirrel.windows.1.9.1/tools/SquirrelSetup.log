@@ -1,0 +1,17 @@
+﻿2020-07-16 11:10:33> Program: Starting Squirrel Updater: --releasify
+2020-07-16 11:10:33> Unhandled exception: Mono.Options.OptionException: Missing required value for option '--releasify'.
+   at Mono.Options.OptionValueCollection.AssertValid(Int32 index)
+   at Mono.Options.OptionSet.<>c__DisplayClass21_0.<Add>b__0(OptionValueCollection v)
+   at Mono.Options.OptionSet.ActionOption.OnParseComplete(OptionContext c)
+   at Mono.Options.Option.Invoke(OptionContext c)
+   at Mono.Options.OptionSet.Parse(IEnumerable`1 arguments)
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+2020-07-16 11:18:22> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.0.nupkg
+2020-07-16 11:18:22> Program: Bootstrapper EXE found at:C:\Git\organic-wizard\Organic-Wizard\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-16 11:18:22> Program: Creating release package: C:\Git\organic-wizard\Organic-Wizard\Releases\OrganicWizard.1.0.0.nupkg
+2020-07-16 11:18:22> ReleasePackage: Creating release package: C:\Git\organic-wizard\Organic-Wizard\Releases\OrganicWizard.1.0.0.nupkg => C:\Git\organic-wizard\Organic-Wizard\Releases\OrganicWizard-1.0.0-full.nupkg
+2020-07-16 11:18:24> ReleasePackage: Extracting dependent packages: []
+2020-07-16 11:18:24> ReleasePackage: Removing unnecessary data
+2020-07-16 11:18:24> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
+2020-07-16 11:18:25> Program: Building embedded zip file for Setup.exe

@@ -1,0 +1,24 @@
+{
+  "name": "organic-wizard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/claude.roy790/organic-wizard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/claude.roy790/organic-wizard/issues"
+  },
+  "homepage": "https://gitlab.com/claude.roy790/organic-wizard#readme",
+  "dependencies": {
+    "googleapis": "^39.2.0",
+    "node-gdrive": "0.0.16"
+  }
+}
