@@ -11,7 +11,6 @@ namespace Shared
     public static class ImgUtils
     {
         private static TesseractEngine _engine = null;
-        private static string TEMP_LOG = "C:/_tesseract-log.txt";
 
         static ImgUtils()
         {
@@ -24,52 +23,11 @@ namespace Shared
             {
                 try
                 {
-                    string dir = AppDomain.CurrentDomain.BaseDirectory;
-                    string path = "";
-                    bool found = false;
-                    bool foundSln = false;
-                    bool lastFolder = false;
-                    var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-
-                    do
-                    {
-                        if (!foundSln && directory.GetFiles("*.sln").Any())
-                            foundSln = true;
-                        else if (foundSln)
-                            lastFolder = true;
-
-                        path = Path.Combine(directory.FullName, @"tessdata");
-                        if (Directory.Exists(path))
-                        {
-                            found = true;
-                            break;
-                        }
-                        directory = directory.Parent;
-                    }
-                    while (!found && directory != null && !lastFolder);
-
-                    if (found)
-                        _engine = new TesseractEngine(path, "eng", EngineMode.Default);
-                    else
-                        throw new Exception("tessdata folder could not be found.");
+                    _engine = new TesseractEngine("Data/tessdata", "eng", EngineMode.Default);
                 }
                 catch (Exception ex)
                 {
-                    if (File.Exists(TEMP_LOG))
-                        File.Delete(TEMP_LOG);
-                    using (var stream = new StreamWriter(TEMP_LOG))
-                    {
-                        stream.WriteLine(ex.ToString());
-                        stream.WriteLine("------------");
-                        stream.WriteLine(ex.Message);
-                        stream.WriteLine("------------");
-                        stream.WriteLine(ex.StackTrace);
-                        stream.WriteLine("------------");
-                        stream.WriteLine(ex.Source);
-                        stream.WriteLine("------------");
-                        stream.WriteLine(ex.InnerException);
-                        stream.WriteLine("------------");
-                    }
+                    Console.WriteLine($"Tesseract engine failed to initialize: {ex.Message}");
                 }
             }
         }

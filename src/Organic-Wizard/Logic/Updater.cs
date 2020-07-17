@@ -20,7 +20,7 @@ namespace Organic_Wizard
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 var updateTask = UpdateManager.GitHubUpdateManager(Properties.Settings.Default.GitRepo);
-
+                
                 updateManager = await updateTask;
                 updateInfo = await updateManager.CheckForUpdate();
                 int? updateCount = updateInfo.ReleasesToApply?.Count;
@@ -31,7 +31,7 @@ namespace Organic_Wizard
                     release = await updateManager.UpdateApp();
                 }
 
-                if (updateCount > 0 && release != null && (currentVersion == null || release.Version > currentVersion))
+                if (updateInfo.CurrentlyInstalledVersion != release && release != null)
                 {
                     status.InstalledNewVersion = true;
                     status.Release = release;
