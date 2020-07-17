@@ -31,13 +31,13 @@ namespace Organic_Wizard
             SavedData.Init();
             _logicEngine = new LogicEngine();
             InitializeComponent();
-            CheckForUpdates();
-            AddVersionNumber();
         }
 
-        protected override void OnLoad(EventArgs e)
+        protected  async override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            AddVersionNumber();
+            await CheckForUpdates();
 #if DEBUG
             btnDebug.Visible = true;
             btnDebug.Enabled = true;
@@ -81,17 +81,25 @@ namespace Organic_Wizard
 
         private async Task CheckForUpdates()
         {
-            using (var manager = new UpdateManager(@"C:\Temp\Releases"))
+            try
             {
-                await manager.UpdateApp();
+                using (var mgr = new UpdateManager(@"https://github.com/clauderoy790/Organic-Wizard/releases/latest"))
+                {
+                    var entry = await mgr.UpdateApp();
+                    if (entry != null)
+                        MessageBox.Show($"Successfully updated to version: { entry.Version}! You may restart the app to get the newest features.", "Update Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while trying to update, try again later. Error: " + ex.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void AddVersionNumber()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            this.Text += $" - v{versionInfo.FileVersion}";
+            this.Text += $" - {assembly.GetName().Version.ToString(3)}";
         }
 
         private void KeyPress_IntOnly(object sender, KeyPressEventArgs e)
