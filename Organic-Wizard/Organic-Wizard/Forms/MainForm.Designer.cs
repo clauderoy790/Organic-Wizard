@@ -85,6 +85,7 @@
             this.chkUseSupportSkills = new System.Windows.Forms.CheckBox();
             this.btnStartStop = new System.Windows.Forms.Button();
             this.btnDebug = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tpAttack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkRecoverySkillPercent)).BeginInit();
@@ -764,11 +765,22 @@
             this.btnDebug.Visible = false;
             this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(434, 602);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(150, 29);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 662);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnDebug);
             this.Controls.Add(this.btnStartStop);
             this.Controls.Add(this.tabControl1);
@@ -787,6 +799,7 @@
             this.tpSupport.ResumeLayout(false);
             this.tpSupport.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -849,5 +862,6 @@
         private System.Windows.Forms.CheckBox chkParty1;
         private System.Windows.Forms.TextBox txtSuppSkill1;
         private System.Windows.Forms.Button btnDebug;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

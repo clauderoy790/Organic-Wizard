@@ -90,3 +90,21 @@ File name: 'OrganicWizard.1.0.0.nupkg'
 2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\x86\liblept1753.dll hasn't changed, writing dummy file
 2020-07-16 21:35:04> DeltaPackageBuilder: \lib\net45\x86\libtesseract3052.dll hasn't changed, writing dummy file
 2020-07-16 21:35:05> Program: Building embedded zip file for Setup.exe
+2020-07-17 05:33:06> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.2.nupkg
+2020-07-17 05:33:06> Program: Bootstrapper EXE found at:C:\Git\organic-wizard\Organic-Wizard\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-17 05:33:06> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'OrganicWizard.1.0.2.nupkg'.
+File name: 'OrganicWizard.1.0.2.nupkg'
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
+   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+2020-07-17 05:33:20> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.2.nupkg
+2020-07-17 05:33:20> Program: Bootstrapper EXE found at:C:\Git\organic-wizard\Organic-Wizard\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-17 05:33:20> Program: Creating release package: C:\Git\organic-wizard\Organic-Wizard\Releases\OrganicWizard.1.0.2.nupkg
+2020-07-17 05:33:20> ReleasePackage: Creating release package: C:\Git\organic-wizard\Organic-Wizard\Releases\OrganicWizard.1.0.2.nupkg => C:\Git\organic-wizard\Organic-Wizard\Releases\OrganicWizard-1.0.2-full.nupkg
+2020-07-17 05:33:21> ReleasePackage: Extracting dependent packages: []
+2020-07-17 05:33:21> ReleasePackage: Removing unnecessary data
+2020-07-17 05:33:21> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
+2020-07-17 05:33:22> Program: Building embedded zip file for Setup.exe
