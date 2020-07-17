@@ -295,3 +295,19 @@ C:\Git\Organic-Wizard\Organic-Wizard\Releases\Setup.wxs(2) : error CNDL0010 : Th
 2020-07-17 13:46:41> ReleasePackage: Removing unnecessary data
 2020-07-17 13:46:41> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
 2020-07-17 13:46:42> Program: Building embedded zip file for Setup.exe
+2020-07-17 14:28:43> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.0.nupkg
+2020-07-17 14:28:43> Program: Bootstrapper EXE found at:C:\Git\Organic-Wizard\src\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-17 14:28:43> Program: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg
+2020-07-17 14:28:43> ReleasePackage: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg => C:\Git\Organic-Wizard\src\Releases\OrganicWizard-1.0.0-full.nupkg
+2020-07-17 14:28:44> ReleasePackage: Extracting dependent packages: []
+2020-07-17 14:28:44> ReleasePackage: Removing unnecessary data
+2020-07-17 14:28:44> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
+2020-07-17 14:28:45> Program: Building embedded zip file for Setup.exe
+2020-07-17 14:37:25> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.0.nupkg
+2020-07-17 14:37:25> Program: Bootstrapper EXE found at:C:\Git\Organic-Wizard\src\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-17 14:37:25> Program: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg
+2020-07-17 14:37:25> ReleasePackage: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg => C:\Git\Organic-Wizard\src\Releases\OrganicWizard-1.0.0-full.nupkg
+2020-07-17 14:37:26> ReleasePackage: Extracting dependent packages: []
+2020-07-17 14:37:26> ReleasePackage: Removing unnecessary data
+2020-07-17 14:37:26> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
+2020-07-17 14:37:27> Program: Building embedded zip file for Setup.exe
