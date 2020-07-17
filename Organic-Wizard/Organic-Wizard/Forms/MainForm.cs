@@ -33,11 +33,13 @@ namespace Organic_Wizard
             _logicEngine = new LogicEngine();
         }
 
-        protected  async override void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             AddVersionNumber();
-            await CheckForUpdates();
+            Task.Run(async() => { 
+                await CheckForUpdates(); 
+            });
 #if DEBUG
             btnDebug.Visible = true;
             btnDebug.Enabled = true;
@@ -87,12 +89,20 @@ namespace Organic_Wizard
                 {
                     var entry = await mgr.Result.UpdateApp();
                     if (entry != null)
-                        MessageBox.Show($"Successfully updated to version: { entry.Version}! You may restart the app to get the newest features.", "Update Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    {
+                        InvokeUI(() =>
+                        {
+                            MessageBox.Show($"Successfully updated to version: { entry.Version}! You may restart the app to get the newest features.", "Update Successful!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        });
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while trying to update, try again later.{Environment.NewLine}Error: " + ex.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                InvokeUI(() =>
+                {
+                    MessageBox.Show($"An error occurred while trying to update, try again later.{Environment.NewLine}Error: " + ex.Message, "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                });
             }
         }
 
@@ -216,7 +226,8 @@ namespace Organic_Wizard
 
         private void UpdateBtnStartText()
         {
-            this.Invoke((MethodInvoker)delegate {
+            this.Invoke((MethodInvoker)delegate
+            {
                 // Running on the UI thread
                 btnStartStop.Text = btnStartStop.Text == "Start" ? "Stop" : "Start";
 
@@ -233,6 +244,11 @@ namespace Organic_Wizard
         {
             CharacterInfoDebugForm debug = new CharacterInfoDebugForm();
             debug.Show();
+        }
+
+        private void InvokeUI(Action a)
+        {
+            this.BeginInvoke(new MethodInvoker(a));
         }
     }
 }
