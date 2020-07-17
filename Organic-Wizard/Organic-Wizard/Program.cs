@@ -23,8 +23,9 @@ namespace Organic_Wizard
                 mgrTask = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard");
                 //using (var mgr = UpdateManager.GitHubUpdateManager(@"https://github.com/clauderoy790/Organic-Wizard"))
                 //{
-                var resultTask = mgrTask.Result;
-                var entry = await resultTask.UpdateApp();
+                var updateManager = mgrTask.Result;
+                MessageBox.Show($"Update: Appname:{ updateManager.ApplicationName}{Environment.NewLine}, root dir:{updateManager.RootAppDirectory}{Environment.NewLine}", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var entry = await updateManager.UpdateApp();
                 if (entry != null)
                 {
 

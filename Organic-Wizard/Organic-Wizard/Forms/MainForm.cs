@@ -38,9 +38,11 @@ namespace Organic_Wizard
         {
             base.OnLoad(e);
             AddVersionNumber();
-            Task.Run(async() => { 
-                await CheckForUpdates(); 
-            });
+            MessageBox.Show("VERSSION !>0.3");
+            //todo put back
+            //Task.Run(async() => { 
+            //    await CheckForUpdates(); 
+            //});
 #if DEBUG
             btnDebug.Visible = true;
             btnDebug.Enabled = true;
