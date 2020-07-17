@@ -101,6 +101,6 @@
     <UPLOAD_TO_DRIVE>false</UPLOAD_TO_DRIVE>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>powershell $(SolutionDir)..\postBuild.ps1 '$(TargetDir)' '$(BUILD_OUTPUT_COPY_FOLDER)\' '$(ProjectName)' '$(ConfigurationName)' '$(GDRIVE_PARENT_FOLDER_ID)' '$(SolutionDir)..\' '$(UPLOAD_TO_DRIVE)'</PostBuildEvent>
+    <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
 </Project>
