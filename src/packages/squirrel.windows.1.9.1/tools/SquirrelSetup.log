@@ -311,3 +311,36 @@ C:\Git\Organic-Wizard\Organic-Wizard\Releases\Setup.wxs(2) : error CNDL0010 : Th
 2020-07-17 14:37:26> ReleasePackage: Removing unnecessary data
 2020-07-17 14:37:26> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
 2020-07-17 14:37:27> Program: Building embedded zip file for Setup.exe
+2020-07-18 12:21:30> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.0.nupkg
+2020-07-18 12:21:30> Program: Bootstrapper EXE found at:C:\Git\Organic-Wizard\src\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-18 12:21:30> Program: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg
+2020-07-18 12:21:30> ReleasePackage: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg => C:\Git\Organic-Wizard\src\Releases\OrganicWizard-1.0.0-full.nupkg
+2020-07-18 12:21:30> ReleasePackage: Extracting dependent packages: []
+2020-07-18 12:21:30> ReleasePackage: Removing unnecessary data
+2020-07-18 12:21:30> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
+2020-07-18 12:21:31> Program: Building embedded zip file for Setup.exe
+2020-07-18 12:28:34> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.0.nupkg
+2020-07-18 12:28:34> Program: Bootstrapper EXE found at:C:\Git\Organic-Wizard\src\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-18 12:28:34> Program: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg
+2020-07-18 12:28:34> ReleasePackage: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg => C:\Git\Organic-Wizard\src\Releases\OrganicWizard-1.0.0-full.nupkg
+2020-07-18 12:28:35> ReleasePackage: Extracting dependent packages: []
+2020-07-18 12:28:35> ReleasePackage: Removing unnecessary data
+2020-07-18 12:28:35> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
+2020-07-18 12:28:36> Program: Building embedded zip file for Setup.exe
+2020-07-18 12:28:36> Program: Failed to update Setup.exe with new Zip file: System.Exception: Failed to write Zip to Setup.exe!
+
+Setup: C:\Git\Organic-Wizard\src\Releases\Setup.exe, Zip: C:\Users\Claud\AppData\Local\Temp\tmp470D.tmp
+Starting to read in Zip file!
+Updating Resource!
+Finished!
+Failed to update resource
+Usage: WriteZipToSetup [Setup.exe template] [Zip File]
+   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
+2020-07-18 12:29:12> Program: Starting Squirrel Updater: --releasify OrganicWizard.1.0.0.nupkg
+2020-07-18 12:29:12> Program: Bootstrapper EXE found at:C:\Git\Organic-Wizard\src\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2020-07-18 12:29:12> Program: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg
+2020-07-18 12:29:12> ReleasePackage: Creating release package: C:\Git\Organic-Wizard\src\Releases\OrganicWizard.1.0.0.nupkg => C:\Git\Organic-Wizard\src\Releases\OrganicWizard-1.0.0-full.nupkg
+2020-07-18 12:29:12> ReleasePackage: Extracting dependent packages: []
+2020-07-18 12:29:12> ReleasePackage: Removing unnecessary data
+2020-07-18 12:29:12> ReleasePackage: No release notes found in C:\Users\Claud\AppData\Local\SquirrelTemp\tempa\OrganicWizard.nuspec
+2020-07-18 12:29:13> Program: Building embedded zip file for Setup.exe

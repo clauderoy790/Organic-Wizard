@@ -58,6 +58,7 @@
     <Compile Include="ImgUtils.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="KListener.cs" />
+    <Compile Include="NetworkHelper.cs" />
     <Compile Include="PointGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinUtils.cs" />

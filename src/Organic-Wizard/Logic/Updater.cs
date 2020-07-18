@@ -1,10 +1,12 @@
-﻿using Squirrel;
+﻿using Shared;
+using Squirrel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Organic_Wizard
 {
@@ -13,6 +15,12 @@ namespace Organic_Wizard
         public static async Task CheckForUpdates(Action<UpdateStatus> OnUpdateChecked)
         {
             UpdateStatus status = new UpdateStatus();
+            if (!NetworkHelper.IsConnectedToInternet())
+            {
+                OnUpdateChecked?.Invoke(status);
+                return;
+            }
+
             UpdateManager updateManager = null;
             ReleaseEntry release = null;
             UpdateInfo updateInfo = null;
@@ -36,13 +44,17 @@ namespace Organic_Wizard
                     status.InstalledNewVersion = true;
                     status.Release = release;
                 }
-                
+
+                status.HasInternetConnection = true;
                 OnUpdateChecked?.Invoke(status);
             }
             catch (Exception ex)
             {
                 status.Error = ex;
                 OnUpdateChecked?.Invoke(status);
+#if DEBUG
+                DebugUtils.LogError("C:/update-error.txt",ex);
+#endif
             }
             finally
             {
@@ -56,6 +68,8 @@ namespace Organic_Wizard
             public bool InstalledNewVersion { get; set; }
             public Exception Error { get; set; }
             public ReleaseEntry Release { get; set; }
+
+            public bool HasInternetConnection { get; set; }
         }
     }
 }
