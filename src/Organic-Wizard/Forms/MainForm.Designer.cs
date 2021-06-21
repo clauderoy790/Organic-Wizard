@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpAttack = new System.Windows.Forms.TabPage();
             this.lblUseRecSkillPercent = new System.Windows.Forms.Label();
@@ -83,9 +84,15 @@
             this.chkParty1 = new System.Windows.Forms.CheckBox();
             this.txtSuppSkill1 = new System.Windows.Forms.TextBox();
             this.chkUseSupportSkills = new System.Windows.Forms.CheckBox();
+            this.tpOther = new System.Windows.Forms.TabPage();
+            this.chkLoot = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMaxTravelDistance = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tpSettings = new System.Windows.Forms.TabPage();
+            this.chkDarkMode = new System.Windows.Forms.CheckBox();
             this.btnStartStop = new System.Windows.Forms.Button();
-            this.btnDebug = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.lblRunTime = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tpAttack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkRecoverySkillPercent)).BeginInit();
@@ -93,6 +100,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trkMpRecovery)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkHpRecovery)).BeginInit();
             this.tpSupport.SuspendLayout();
+            this.tpOther.SuspendLayout();
+            this.tpSettings.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -100,6 +109,8 @@
             this.tabControl1.Controls.Add(this.tpAttack);
             this.tabControl1.Controls.Add(this.tpRecover);
             this.tabControl1.Controls.Add(this.tpSupport);
+            this.tabControl1.Controls.Add(this.tpOther);
+            this.tabControl1.Controls.Add(this.tpSettings);
             this.tabControl1.Location = new System.Drawing.Point(24, 23);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
@@ -109,7 +120,7 @@
             // 
             // tpAttack
             // 
-            this.tpAttack.Controls.Add(this.checkBox2);
+            this.tpAttack.BackColor = System.Drawing.Color.Black;
             this.tpAttack.Controls.Add(this.lblUseRecSkillPercent);
             this.tpAttack.Controls.Add(this.btnRecSkillBarPlus);
             this.tpAttack.Controls.Add(this.trkRecoverySkillPercent);
@@ -128,6 +139,7 @@
             this.tpAttack.Controls.Add(this.label1);
             this.tpAttack.Controls.Add(this.chkRecMode);
             this.tpAttack.Controls.Add(this.chkAtkMode);
+            this.tpAttack.ForeColor = System.Drawing.Color.White;
             this.tpAttack.Location = new System.Drawing.Point(8, 39);
             this.tpAttack.Margin = new System.Windows.Forms.Padding(6);
             this.tpAttack.Name = "tpAttack";
@@ -135,11 +147,12 @@
             this.tpAttack.Size = new System.Drawing.Size(562, 520);
             this.tpAttack.TabIndex = 0;
             this.tpAttack.Text = "Attack";
-            this.tpAttack.UseVisualStyleBackColor = true;
             // 
             // lblUseRecSkillPercent
             // 
             this.lblUseRecSkillPercent.AutoSize = true;
+            this.lblUseRecSkillPercent.BackColor = System.Drawing.Color.Black;
+            this.lblUseRecSkillPercent.ForeColor = System.Drawing.Color.White;
             this.lblUseRecSkillPercent.Location = new System.Drawing.Point(470, 410);
             this.lblUseRecSkillPercent.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblUseRecSkillPercent.Name = "lblUseRecSkillPercent";
@@ -149,14 +162,16 @@
             // 
             // btnRecSkillBarPlus
             // 
+            this.btnRecSkillBarPlus.BackColor = System.Drawing.Color.Black;
             this.btnRecSkillBarPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecSkillBarPlus.ForeColor = System.Drawing.Color.White;
             this.btnRecSkillBarPlus.Location = new System.Drawing.Point(402, 388);
             this.btnRecSkillBarPlus.Margin = new System.Windows.Forms.Padding(6);
             this.btnRecSkillBarPlus.Name = "btnRecSkillBarPlus";
             this.btnRecSkillBarPlus.Size = new System.Drawing.Size(56, 65);
             this.btnRecSkillBarPlus.TabIndex = 18;
             this.btnRecSkillBarPlus.Text = "->";
-            this.btnRecSkillBarPlus.UseVisualStyleBackColor = true;
+            this.btnRecSkillBarPlus.UseVisualStyleBackColor = false;
             // 
             // trkRecoverySkillPercent
             // 
@@ -169,19 +184,23 @@
             // 
             // btnRecSkillBarMinus
             // 
+            this.btnRecSkillBarMinus.BackColor = System.Drawing.Color.Black;
             this.btnRecSkillBarMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecSkillBarMinus.ForeColor = System.Drawing.Color.White;
             this.btnRecSkillBarMinus.Location = new System.Drawing.Point(32, 388);
             this.btnRecSkillBarMinus.Margin = new System.Windows.Forms.Padding(6);
             this.btnRecSkillBarMinus.Name = "btnRecSkillBarMinus";
             this.btnRecSkillBarMinus.Size = new System.Drawing.Size(56, 65);
             this.btnRecSkillBarMinus.TabIndex = 16;
             this.btnRecSkillBarMinus.Text = "<-";
-            this.btnRecSkillBarMinus.UseVisualStyleBackColor = true;
+            this.btnRecSkillBarMinus.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Black;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(56, 331);
             this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
@@ -191,6 +210,8 @@
             // 
             // txtRecSkill3
             // 
+            this.txtRecSkill3.BackColor = System.Drawing.Color.Black;
+            this.txtRecSkill3.ForeColor = System.Drawing.Color.White;
             this.txtRecSkill3.Location = new System.Drawing.Point(310, 227);
             this.txtRecSkill3.Margin = new System.Windows.Forms.Padding(6);
             this.txtRecSkill3.Name = "txtRecSkill3";
@@ -201,6 +222,8 @@
             // 
             // txtRecSkill4
             // 
+            this.txtRecSkill4.BackColor = System.Drawing.Color.Black;
+            this.txtRecSkill4.ForeColor = System.Drawing.Color.White;
             this.txtRecSkill4.Location = new System.Drawing.Point(374, 227);
             this.txtRecSkill4.Margin = new System.Windows.Forms.Padding(6);
             this.txtRecSkill4.Name = "txtRecSkill4";
@@ -211,6 +234,8 @@
             // 
             // txtRecSkill2
             // 
+            this.txtRecSkill2.BackColor = System.Drawing.Color.Black;
+            this.txtRecSkill2.ForeColor = System.Drawing.Color.White;
             this.txtRecSkill2.Location = new System.Drawing.Point(246, 227);
             this.txtRecSkill2.Margin = new System.Windows.Forms.Padding(6);
             this.txtRecSkill2.Name = "txtRecSkill2";
@@ -221,6 +246,8 @@
             // 
             // txtRecSkill1
             // 
+            this.txtRecSkill1.BackColor = System.Drawing.Color.Black;
+            this.txtRecSkill1.ForeColor = System.Drawing.Color.White;
             this.txtRecSkill1.Location = new System.Drawing.Point(182, 227);
             this.txtRecSkill1.Margin = new System.Windows.Forms.Padding(6);
             this.txtRecSkill1.Name = "txtRecSkill1";
@@ -232,6 +259,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Black;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(68, 233);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
@@ -241,6 +270,8 @@
             // 
             // txtAtkSkill3
             // 
+            this.txtAtkSkill3.BackColor = System.Drawing.Color.Black;
+            this.txtAtkSkill3.ForeColor = System.Drawing.Color.White;
             this.txtAtkSkill3.Location = new System.Drawing.Point(310, 181);
             this.txtAtkSkill3.Margin = new System.Windows.Forms.Padding(6);
             this.txtAtkSkill3.Name = "txtAtkSkill3";
@@ -251,6 +282,8 @@
             // 
             // txtAtkSkill4
             // 
+            this.txtAtkSkill4.BackColor = System.Drawing.Color.Black;
+            this.txtAtkSkill4.ForeColor = System.Drawing.Color.White;
             this.txtAtkSkill4.Location = new System.Drawing.Point(374, 181);
             this.txtAtkSkill4.Margin = new System.Windows.Forms.Padding(6);
             this.txtAtkSkill4.Name = "txtAtkSkill4";
@@ -261,6 +294,8 @@
             // 
             // txtAtkSkill2
             // 
+            this.txtAtkSkill2.BackColor = System.Drawing.Color.Black;
+            this.txtAtkSkill2.ForeColor = System.Drawing.Color.Black;
             this.txtAtkSkill2.Location = new System.Drawing.Point(246, 181);
             this.txtAtkSkill2.Margin = new System.Windows.Forms.Padding(6);
             this.txtAtkSkill2.Name = "txtAtkSkill2";
@@ -271,6 +306,8 @@
             // 
             // txtAtkSkill1
             // 
+            this.txtAtkSkill1.BackColor = System.Drawing.Color.Black;
+            this.txtAtkSkill1.ForeColor = System.Drawing.Color.White;
             this.txtAtkSkill1.Location = new System.Drawing.Point(182, 181);
             this.txtAtkSkill1.Margin = new System.Windows.Forms.Padding(6);
             this.txtAtkSkill1.Name = "txtAtkSkill1";
@@ -282,7 +319,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Black;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(56, 129);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
@@ -293,6 +332,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(88, 187);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
@@ -303,29 +344,34 @@
             // chkRecMode
             // 
             this.chkRecMode.AutoSize = true;
+            this.chkRecMode.BackColor = System.Drawing.Color.Black;
+            this.chkRecMode.ForeColor = System.Drawing.Color.White;
             this.chkRecMode.Location = new System.Drawing.Point(310, 56);
             this.chkRecMode.Margin = new System.Windows.Forms.Padding(6);
             this.chkRecMode.Name = "chkRecMode";
-            this.chkRecMode.Size = new System.Drawing.Size(201, 29);
+            this.chkRecMode.Size = new System.Drawing.Size(195, 29);
             this.chkRecMode.TabIndex = 2;
-            this.chkRecMode.Text = "Recovery Mode:";
-            this.chkRecMode.UseVisualStyleBackColor = true;
+            this.chkRecMode.Text = "Recovery Mode";
+            this.chkRecMode.UseVisualStyleBackColor = false;
             this.chkRecMode.CheckedChanged += new System.EventHandler(this.InfoChanged);
             // 
             // chkAtkMode
             // 
             this.chkAtkMode.AutoSize = true;
+            this.chkAtkMode.BackColor = System.Drawing.Color.Black;
+            this.chkAtkMode.ForeColor = System.Drawing.Color.White;
             this.chkAtkMode.Location = new System.Drawing.Point(32, 56);
             this.chkAtkMode.Margin = new System.Windows.Forms.Padding(6);
             this.chkAtkMode.Name = "chkAtkMode";
-            this.chkAtkMode.Size = new System.Drawing.Size(170, 29);
+            this.chkAtkMode.Size = new System.Drawing.Size(164, 29);
             this.chkAtkMode.TabIndex = 1;
-            this.chkAtkMode.Text = "Attack Mode:";
+            this.chkAtkMode.Text = "Attack Mode";
             this.chkAtkMode.UseVisualStyleBackColor = true;
             this.chkAtkMode.CheckedChanged += new System.EventHandler(this.InfoChanged);
             // 
             // tpRecover
             // 
+            this.tpRecover.BackColor = System.Drawing.Color.Black;
             this.tpRecover.Controls.Add(this.label5);
             this.tpRecover.Controls.Add(this.txtMpRecoverySkill);
             this.tpRecover.Controls.Add(this.chkMpRecovery);
@@ -342,6 +388,7 @@
             this.tpRecover.Controls.Add(this.trkHpRecovery);
             this.tpRecover.Controls.Add(this.btnHpRecoveryMinus);
             this.tpRecover.Controls.Add(this.label6);
+            this.tpRecover.ForeColor = System.Drawing.Color.White;
             this.tpRecover.Location = new System.Drawing.Point(8, 39);
             this.tpRecover.Margin = new System.Windows.Forms.Padding(6);
             this.tpRecover.Name = "tpRecover";
@@ -349,7 +396,6 @@
             this.tpRecover.Size = new System.Drawing.Size(562, 520);
             this.tpRecover.TabIndex = 1;
             this.tpRecover.Text = "Recover";
-            this.tpRecover.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -363,6 +409,8 @@
             // 
             // txtMpRecoverySkill
             // 
+            this.txtMpRecoverySkill.BackColor = System.Drawing.Color.Black;
+            this.txtMpRecoverySkill.ForeColor = System.Drawing.Color.White;
             this.txtMpRecoverySkill.Location = new System.Drawing.Point(364, 287);
             this.txtMpRecoverySkill.Margin = new System.Windows.Forms.Padding(6);
             this.txtMpRecoverySkill.Name = "txtMpRecoverySkill";
@@ -395,14 +443,16 @@
             // 
             // btnMpRecoveryPlus
             // 
+            this.btnMpRecoveryPlus.BackColor = System.Drawing.Color.Black;
             this.btnMpRecoveryPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMpRecoveryPlus.ForeColor = System.Drawing.Color.White;
             this.btnMpRecoveryPlus.Location = new System.Drawing.Point(408, 415);
             this.btnMpRecoveryPlus.Margin = new System.Windows.Forms.Padding(6);
             this.btnMpRecoveryPlus.Name = "btnMpRecoveryPlus";
             this.btnMpRecoveryPlus.Size = new System.Drawing.Size(56, 65);
             this.btnMpRecoveryPlus.TabIndex = 31;
             this.btnMpRecoveryPlus.Text = "->";
-            this.btnMpRecoveryPlus.UseVisualStyleBackColor = true;
+            this.btnMpRecoveryPlus.UseVisualStyleBackColor = false;
             // 
             // trkMpRecovery
             // 
@@ -415,14 +465,16 @@
             // 
             // btnMpRecoveryMinus
             // 
+            this.btnMpRecoveryMinus.BackColor = System.Drawing.Color.Black;
             this.btnMpRecoveryMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMpRecoveryMinus.ForeColor = System.Drawing.Color.White;
             this.btnMpRecoveryMinus.Location = new System.Drawing.Point(38, 415);
             this.btnMpRecoveryMinus.Margin = new System.Windows.Forms.Padding(6);
             this.btnMpRecoveryMinus.Name = "btnMpRecoveryMinus";
             this.btnMpRecoveryMinus.Size = new System.Drawing.Size(56, 65);
             this.btnMpRecoveryMinus.TabIndex = 29;
             this.btnMpRecoveryMinus.Text = "<-";
-            this.btnMpRecoveryMinus.UseVisualStyleBackColor = true;
+            this.btnMpRecoveryMinus.UseVisualStyleBackColor = false;
             // 
             // label8
             // 
@@ -447,6 +499,8 @@
             // 
             // txtHpRecoverySkill
             // 
+            this.txtHpRecoverySkill.BackColor = System.Drawing.Color.Black;
+            this.txtHpRecoverySkill.ForeColor = System.Drawing.Color.White;
             this.txtHpRecoverySkill.Location = new System.Drawing.Point(364, 27);
             this.txtHpRecoverySkill.Margin = new System.Windows.Forms.Padding(6);
             this.txtHpRecoverySkill.Name = "txtHpRecoverySkill";
@@ -479,14 +533,16 @@
             // 
             // btnHpRecoveryPlus
             // 
+            this.btnHpRecoveryPlus.BackColor = System.Drawing.Color.Black;
             this.btnHpRecoveryPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHpRecoveryPlus.ForeColor = System.Drawing.Color.White;
             this.btnHpRecoveryPlus.Location = new System.Drawing.Point(408, 160);
             this.btnHpRecoveryPlus.Margin = new System.Windows.Forms.Padding(6);
             this.btnHpRecoveryPlus.Name = "btnHpRecoveryPlus";
             this.btnHpRecoveryPlus.Size = new System.Drawing.Size(56, 65);
             this.btnHpRecoveryPlus.TabIndex = 23;
             this.btnHpRecoveryPlus.Text = "->";
-            this.btnHpRecoveryPlus.UseVisualStyleBackColor = true;
+            this.btnHpRecoveryPlus.UseVisualStyleBackColor = false;
             // 
             // trkHpRecovery
             // 
@@ -499,14 +555,16 @@
             // 
             // btnHpRecoveryMinus
             // 
+            this.btnHpRecoveryMinus.BackColor = System.Drawing.Color.Black;
             this.btnHpRecoveryMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHpRecoveryMinus.ForeColor = System.Drawing.Color.White;
             this.btnHpRecoveryMinus.Location = new System.Drawing.Point(38, 160);
             this.btnHpRecoveryMinus.Margin = new System.Windows.Forms.Padding(6);
             this.btnHpRecoveryMinus.Name = "btnHpRecoveryMinus";
             this.btnHpRecoveryMinus.Size = new System.Drawing.Size(56, 65);
             this.btnHpRecoveryMinus.TabIndex = 21;
             this.btnHpRecoveryMinus.Text = "<-";
-            this.btnHpRecoveryMinus.UseVisualStyleBackColor = true;
+            this.btnHpRecoveryMinus.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -521,6 +579,7 @@
             // 
             // tpSupport
             // 
+            this.tpSupport.BackColor = System.Drawing.Color.Black;
             this.tpSupport.Controls.Add(this.chkParty8);
             this.tpSupport.Controls.Add(this.txtSuppSkill8);
             this.tpSupport.Controls.Add(this.chkParty7);
@@ -538,13 +597,13 @@
             this.tpSupport.Controls.Add(this.chkParty1);
             this.tpSupport.Controls.Add(this.txtSuppSkill1);
             this.tpSupport.Controls.Add(this.chkUseSupportSkills);
+            this.tpSupport.ForeColor = System.Drawing.Color.White;
             this.tpSupport.Location = new System.Drawing.Point(8, 39);
             this.tpSupport.Margin = new System.Windows.Forms.Padding(6);
             this.tpSupport.Name = "tpSupport";
             this.tpSupport.Size = new System.Drawing.Size(562, 520);
             this.tpSupport.TabIndex = 2;
             this.tpSupport.Text = "Support";
-            this.tpSupport.UseVisualStyleBackColor = true;
             // 
             // chkParty8
             // 
@@ -561,6 +620,7 @@
             // 
             // txtSuppSkill8
             // 
+            this.txtSuppSkill8.BackColor = System.Drawing.Color.Black;
             this.txtSuppSkill8.Location = new System.Drawing.Point(344, 187);
             this.txtSuppSkill8.Margin = new System.Windows.Forms.Padding(6);
             this.txtSuppSkill8.Name = "txtSuppSkill8";
@@ -584,6 +644,7 @@
             // 
             // txtSuppSkill7
             // 
+            this.txtSuppSkill7.BackColor = System.Drawing.Color.Black;
             this.txtSuppSkill7.Location = new System.Drawing.Point(240, 187);
             this.txtSuppSkill7.Margin = new System.Windows.Forms.Padding(6);
             this.txtSuppSkill7.Name = "txtSuppSkill7";
@@ -607,6 +668,7 @@
             // 
             // txtSuppSkill6
             // 
+            this.txtSuppSkill6.BackColor = System.Drawing.Color.Black;
             this.txtSuppSkill6.Location = new System.Drawing.Point(136, 187);
             this.txtSuppSkill6.Margin = new System.Windows.Forms.Padding(6);
             this.txtSuppSkill6.Name = "txtSuppSkill6";
@@ -630,6 +692,7 @@
             // 
             // txtSuppSkill5
             // 
+            this.txtSuppSkill5.BackColor = System.Drawing.Color.Black;
             this.txtSuppSkill5.Location = new System.Drawing.Point(32, 187);
             this.txtSuppSkill5.Margin = new System.Windows.Forms.Padding(6);
             this.txtSuppSkill5.Name = "txtSuppSkill5";
@@ -653,6 +716,7 @@
             // 
             // txtSuppSkill4
             // 
+            this.txtSuppSkill4.BackColor = System.Drawing.Color.Black;
             this.txtSuppSkill4.Location = new System.Drawing.Point(344, 94);
             this.txtSuppSkill4.Margin = new System.Windows.Forms.Padding(6);
             this.txtSuppSkill4.Name = "txtSuppSkill4";
@@ -676,6 +740,7 @@
             // 
             // txtSuppSkill3
             // 
+            this.txtSuppSkill3.BackColor = System.Drawing.Color.Black;
             this.txtSuppSkill3.Location = new System.Drawing.Point(240, 94);
             this.txtSuppSkill3.Margin = new System.Windows.Forms.Padding(6);
             this.txtSuppSkill3.Name = "txtSuppSkill3";
@@ -699,6 +764,7 @@
             // 
             // txtSuppSkill2
             // 
+            this.txtSuppSkill2.BackColor = System.Drawing.Color.Black;
             this.txtSuppSkill2.Location = new System.Drawing.Point(136, 94);
             this.txtSuppSkill2.Margin = new System.Windows.Forms.Padding(6);
             this.txtSuppSkill2.Name = "txtSuppSkill2";
@@ -722,6 +788,7 @@
             // 
             // txtSuppSkill1
             // 
+            this.txtSuppSkill1.BackColor = System.Drawing.Color.Black;
             this.txtSuppSkill1.Location = new System.Drawing.Point(32, 94);
             this.txtSuppSkill1.Margin = new System.Windows.Forms.Padding(6);
             this.txtSuppSkill1.Name = "txtSuppSkill1";
@@ -742,49 +809,121 @@
             this.chkUseSupportSkills.UseVisualStyleBackColor = true;
             this.chkUseSupportSkills.CheckedChanged += new System.EventHandler(this.InfoChanged);
             // 
+            // tpOther
+            // 
+            this.tpOther.BackColor = System.Drawing.Color.Black;
+            this.tpOther.Controls.Add(this.chkLoot);
+            this.tpOther.Controls.Add(this.label10);
+            this.tpOther.Controls.Add(this.txtMaxTravelDistance);
+            this.tpOther.Controls.Add(this.label9);
+            this.tpOther.ForeColor = System.Drawing.Color.White;
+            this.tpOther.Location = new System.Drawing.Point(8, 39);
+            this.tpOther.Margin = new System.Windows.Forms.Padding(4);
+            this.tpOther.Name = "tpOther";
+            this.tpOther.Size = new System.Drawing.Size(562, 520);
+            this.tpOther.TabIndex = 3;
+            this.tpOther.Text = "Other";
+            // 
+            // chkLoot
+            // 
+            this.chkLoot.AutoSize = true;
+            this.chkLoot.Location = new System.Drawing.Point(238, 83);
+            this.chkLoot.Margin = new System.Windows.Forms.Padding(6);
+            this.chkLoot.Name = "chkLoot";
+            this.chkLoot.Size = new System.Drawing.Size(28, 27);
+            this.chkLoot.TabIndex = 10;
+            this.chkLoot.UseVisualStyleBackColor = true;
+            this.chkLoot.CheckedChanged += new System.EventHandler(this.InfoChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(10, 83);
+            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 25);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Loot:";
+            // 
+            // txtMaxTravelDistance
+            // 
+            this.txtMaxTravelDistance.BackColor = System.Drawing.Color.Black;
+            this.txtMaxTravelDistance.ForeColor = System.Drawing.Color.White;
+            this.txtMaxTravelDistance.Location = new System.Drawing.Point(236, 29);
+            this.txtMaxTravelDistance.Margin = new System.Windows.Forms.Padding(6);
+            this.txtMaxTravelDistance.Name = "txtMaxTravelDistance";
+            this.txtMaxTravelDistance.Size = new System.Drawing.Size(80, 31);
+            this.txtMaxTravelDistance.TabIndex = 8;
+            this.txtMaxTravelDistance.Text = "30";
+            this.txtMaxTravelDistance.TextChanged += new System.EventHandler(this.InfoChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 33);
+            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(215, 25);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Max Travel Distance:";
+            // 
+            // tpSettings
+            // 
+            this.tpSettings.BackColor = System.Drawing.Color.Black;
+            this.tpSettings.Controls.Add(this.chkDarkMode);
+            this.tpSettings.ForeColor = System.Drawing.Color.White;
+            this.tpSettings.Location = new System.Drawing.Point(8, 39);
+            this.tpSettings.Margin = new System.Windows.Forms.Padding(6);
+            this.tpSettings.Name = "tpSettings";
+            this.tpSettings.Size = new System.Drawing.Size(562, 520);
+            this.tpSettings.TabIndex = 4;
+            this.tpSettings.Text = "Settings";
+            // 
+            // chkDarkMode
+            // 
+            this.chkDarkMode.AutoSize = true;
+            this.chkDarkMode.Location = new System.Drawing.Point(32, 56);
+            this.chkDarkMode.Margin = new System.Windows.Forms.Padding(6);
+            this.chkDarkMode.Name = "chkDarkMode";
+            this.chkDarkMode.Size = new System.Drawing.Size(149, 29);
+            this.chkDarkMode.TabIndex = 2;
+            this.chkDarkMode.Text = "Dark Mode";
+            this.chkDarkMode.UseVisualStyleBackColor = true;
+            this.chkDarkMode.CheckedChanged += new System.EventHandler(this.DarkModeCheckChanged);
+            // 
             // btnStartStop
             // 
+            this.btnStartStop.BackColor = System.Drawing.Color.Black;
+            this.btnStartStop.ForeColor = System.Drawing.Color.White;
             this.btnStartStop.Location = new System.Drawing.Point(216, 602);
             this.btnStartStop.Margin = new System.Windows.Forms.Padding(6);
             this.btnStartStop.Name = "btnStartStop";
             this.btnStartStop.Size = new System.Drawing.Size(150, 44);
             this.btnStartStop.TabIndex = 1;
             this.btnStartStop.Text = "Start";
-            this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.UseVisualStyleBackColor = false;
             this.btnStartStop.Click += new System.EventHandler(this.StartStopClick);
             // 
-            // btnDebug
+            // lblRunTime
             // 
-            this.btnDebug.Enabled = false;
-            this.btnDebug.Location = new System.Drawing.Point(32, 602);
-            this.btnDebug.Margin = new System.Windows.Forms.Padding(6);
-            this.btnDebug.Name = "btnDebug";
-            this.btnDebug.Size = new System.Drawing.Size(116, 44);
-            this.btnDebug.TabIndex = 2;
-            this.btnDebug.Text = "Debug";
-            this.btnDebug.UseVisualStyleBackColor = true;
-            this.btnDebug.Visible = false;
-            this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(340, 299);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(150, 29);
-            this.checkBox2.TabIndex = 20;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.lblRunTime.AutoSize = true;
+            this.lblRunTime.Location = new System.Drawing.Point(408, 612);
+            this.lblRunTime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblRunTime.Name = "lblRunTime";
+            this.lblRunTime.Size = new System.Drawing.Size(0, 25);
+            this.lblRunTime.TabIndex = 2;
+            this.lblRunTime.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(626, 662);
-            this.Controls.Add(this.btnDebug);
+            this.Controls.Add(this.lblRunTime);
             this.Controls.Add(this.btnStartStop);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainForm";
             this.Text = "Organic Wizard";
@@ -798,7 +937,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.trkHpRecovery)).EndInit();
             this.tpSupport.ResumeLayout(false);
             this.tpSupport.PerformLayout();
+            this.tpOther.ResumeLayout(false);
+            this.tpOther.PerformLayout();
+            this.tpSettings.ResumeLayout(false);
+            this.tpSettings.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -860,7 +1004,13 @@
         private System.Windows.Forms.TextBox txtSuppSkill2;
         private System.Windows.Forms.CheckBox chkParty1;
         private System.Windows.Forms.TextBox txtSuppSkill1;
-        private System.Windows.Forms.Button btnDebug;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TabPage tpOther;
+        private System.Windows.Forms.TextBox txtMaxTravelDistance;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblRunTime;
+        private System.Windows.Forms.CheckBox chkLoot;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TabPage tpSettings;
+        private System.Windows.Forms.CheckBox chkDarkMode;
     }
 }

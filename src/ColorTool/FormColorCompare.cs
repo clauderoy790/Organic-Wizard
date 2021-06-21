@@ -27,7 +27,6 @@ namespace ColorTool
             {
                 TxtSearch = txtSearchCol1,
                 TxtHex = txtHexColor,
-                TxtInt = txtIntColor,
                 TxtRgb = txtRGB,
                 PanColor = panColor
             };
@@ -36,10 +35,11 @@ namespace ColorTool
             {
                 TxtSearch = txtSearchCol2,
                 TxtHex = txtHex2,
-                TxtInt = txtInt2,
                 TxtRgb = txtRGB2,
                 PanColor = panColor2
             };
+            ColorHelper.RegisterColorField(txtSearchCol1, UpdateColorUI);
+            ColorHelper.RegisterColorField(txtSearchCol2, UpdateColorUI);
         }
 
         private void btnPick1_Click(object sender, EventArgs e)
@@ -62,16 +62,6 @@ namespace ColorTool
             UpdateColorDiff();
         }
 
-        private void txtSearch1Changed(object sender, EventArgs e)
-        {
-            UpdateSearch(txtSearchCol1,_colFields1);
-        }
-
-        private void txtSearch2Changed(object sender, EventArgs e)
-        {
-            UpdateSearch(txtSearchCol2, _colFields2);
-        }
-
         void UpdateSearch(TextBox txt,ColorFields fields)
         {
             Color col = FormColorMain.GetResearchFieldColor(txt);
@@ -80,9 +70,23 @@ namespace ColorTool
             UpdateColorDiff();
         }
 
+        private void UpdateColorUI(ColorHelper.TextColorInfo info)
+        {
+            Color col = FormColorMain.GetResearchFieldColor(info.TextBox);
+            ColorFields fields = GetFielsForText(info.TextBox);
+            if (col != Color.Empty)
+                fields.SetColor(col);
+            UpdateColorDiff();
+        }
+
+        private ColorFields GetFielsForText(TextBox textBox)
+        {
+            return (_colFields1.TxtSearch == textBox ? _colFields1 : _colFields2);
+        }
+
         private void UpdateColorDiff()
         {
-            int result = CUtils.ColorDiff(_colFields1.Color, _colFields2.Color);
+            int result = ColorUtils.ColorDiff(_colFields1.Color, _colFields2.Color);
             lblResult.Text = string.Format("Color Difference: {0}", result);
         }
 
@@ -113,9 +117,8 @@ namespace ColorTool
                 _color = col;
                 PanColor.ForeColor = col;
                 PanColor.BackColor = col;
-                TxtHex.Text = CUtils.GetHexColor(col);
-                TxtInt.Text = CUtils.GetColorAsInt(col) + "";
-                TxtRgb.Text = string.Format("R:{0}, G:{1}, B:{2}", col.R, col.G, col.B);
+                TxtHex.Text = ColorUtils.GetHexColor(col);
+                TxtRgb.Text = $"R:{col.R}, G:{col.G}, B:{col.B}";
             }
 
             public void SetResearchFieldColor()
@@ -124,6 +127,6 @@ namespace ColorTool
                 if (col != Color.Empty)
                     SetColor(col);
             }
-        } 
+        }
     }
 }

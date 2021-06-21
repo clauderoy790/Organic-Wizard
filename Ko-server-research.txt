@@ -1,0 +1,7 @@
+filter
+ip.src==195.142.134.233 or ip.dst==195.142.134.233
+
+
+(Resource monitor) src port = 53904 rermote = 15001
+remote add 195.142.134.233
+full server: 195-142-134-233.rdns.saglayici.net

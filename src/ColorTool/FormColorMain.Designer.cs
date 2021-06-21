@@ -31,9 +31,7 @@ namespace ColorTool
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtHexColor = new System.Windows.Forms.TextBox();
-            this.txtIntColor = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.txtRgb = new System.Windows.Forms.TextBox();
             this.txtX = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,8 +39,6 @@ namespace ColorTool
             this.txtDiff = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnHex = new System.Windows.Forms.Button();
-            this.btnInt = new System.Windows.Forms.Button();
-            this.btnGo = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -51,12 +47,15 @@ namespace ColorTool
             this.btnCompare = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.panSavedColor = new System.Windows.Forms.Panel();
-            this.txtSavedHex = new System.Windows.Forms.TextBox();
+            this.txtSavedRgb = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtSavedY = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSavedX = new System.Windows.Forms.TextBox();
+            this.btnPointGroup = new System.Windows.Forms.Button();
+            this.btnTesseract = new System.Windows.Forms.Button();
+            this.btnFind = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,37 +64,18 @@ namespace ColorTool
             this.label1.Location = new System.Drawing.Point(22, 196);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 25);
+            this.label1.Size = new System.Drawing.Size(120, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Hex Color:";
+            this.label1.Text = "RGB Color:";
             // 
-            // txtHexColor
+            // txtRgb
             // 
-            this.txtHexColor.Enabled = false;
-            this.txtHexColor.Location = new System.Drawing.Point(128, 190);
-            this.txtHexColor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.txtHexColor.Name = "txtHexColor";
-            this.txtHexColor.Size = new System.Drawing.Size(178, 31);
-            this.txtHexColor.TabIndex = 2;
-            // 
-            // txtIntColor
-            // 
-            this.txtIntColor.Enabled = false;
-            this.txtIntColor.Location = new System.Drawing.Point(128, 240);
-            this.txtIntColor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.txtIntColor.Name = "txtIntColor";
-            this.txtIntColor.Size = new System.Drawing.Size(178, 31);
-            this.txtIntColor.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 250);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 25);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Int Color:";
+            this.txtRgb.Enabled = false;
+            this.txtRgb.Location = new System.Drawing.Point(128, 190);
+            this.txtRgb.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtRgb.Name = "txtRgb";
+            this.txtRgb.Size = new System.Drawing.Size(178, 31);
+            this.txtRgb.TabIndex = 2;
             // 
             // txtX
             // 
@@ -105,7 +85,6 @@ namespace ColorTool
             this.txtX.Name = "txtX";
             this.txtX.Size = new System.Drawing.Size(80, 31);
             this.txtX.TabIndex = 5;
-            this.txtX.Text = "216";
             // 
             // label3
             // 
@@ -135,7 +114,6 @@ namespace ColorTool
             this.txtY.Name = "txtY";
             this.txtY.Size = new System.Drawing.Size(80, 31);
             this.txtY.TabIndex = 7;
-            this.txtY.Text = "37";
             // 
             // txtDiff
             // 
@@ -165,29 +143,7 @@ namespace ColorTool
             this.btnHex.TabIndex = 16;
             this.btnHex.Text = "Copy";
             this.btnHex.UseVisualStyleBackColor = true;
-            this.btnHex.Click += new System.EventHandler(this.btnHex_Click);
-            // 
-            // btnInt
-            // 
-            this.btnInt.Location = new System.Drawing.Point(322, 240);
-            this.btnInt.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.btnInt.Name = "btnInt";
-            this.btnInt.Size = new System.Drawing.Size(126, 44);
-            this.btnInt.TabIndex = 17;
-            this.btnInt.Text = "Copy";
-            this.btnInt.UseVisualStyleBackColor = true;
-            this.btnInt.Click += new System.EventHandler(this.btnInt_Click);
-            // 
-            // btnGo
-            // 
-            this.btnGo.Location = new System.Drawing.Point(140, 562);
-            this.btnGo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(150, 44);
-            this.btnGo.TabIndex = 18;
-            this.btnGo.Text = "Go";
-            this.btnGo.UseVisualStyleBackColor = true;
-            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            this.btnHex.Click += new System.EventHandler(this.btnRGB_Click);
             // 
             // label6
             // 
@@ -237,7 +193,7 @@ namespace ColorTool
             // 
             // btnCompare
             // 
-            this.btnCompare.Location = new System.Drawing.Point(340, 562);
+            this.btnCompare.Location = new System.Drawing.Point(424, 588);
             this.btnCompare.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnCompare.Name = "btnCompare";
             this.btnCompare.Size = new System.Drawing.Size(126, 44);
@@ -264,14 +220,14 @@ namespace ColorTool
             this.panSavedColor.Size = new System.Drawing.Size(102, 54);
             this.panSavedColor.TabIndex = 27;
             // 
-            // txtSavedHex
+            // txtSavedRgb
             // 
-            this.txtSavedHex.Enabled = false;
-            this.txtSavedHex.Location = new System.Drawing.Point(128, 454);
-            this.txtSavedHex.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.txtSavedHex.Name = "txtSavedHex";
-            this.txtSavedHex.Size = new System.Drawing.Size(178, 31);
-            this.txtSavedHex.TabIndex = 29;
+            this.txtSavedRgb.Enabled = false;
+            this.txtSavedRgb.Location = new System.Drawing.Point(128, 454);
+            this.txtSavedRgb.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtSavedRgb.Name = "txtSavedRgb";
+            this.txtSavedRgb.Size = new System.Drawing.Size(178, 31);
+            this.txtSavedRgb.TabIndex = 29;
             // 
             // label8
             // 
@@ -279,9 +235,9 @@ namespace ColorTool
             this.label8.Location = new System.Drawing.Point(22, 460);
             this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(113, 25);
+            this.label8.Size = new System.Drawing.Size(120, 25);
             this.label8.TabIndex = 28;
-            this.label8.Text = "Hex Color:";
+            this.label8.Text = "RGB Color:";
             // 
             // label9
             // 
@@ -323,16 +279,52 @@ namespace ColorTool
             this.txtSavedX.TabIndex = 30;
             this.txtSavedX.Text = "216";
             // 
+            // btnPointGroup
+            // 
+            this.btnPointGroup.Location = new System.Drawing.Point(288, 588);
+            this.btnPointGroup.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnPointGroup.Name = "btnPointGroup";
+            this.btnPointGroup.Size = new System.Drawing.Size(126, 44);
+            this.btnPointGroup.TabIndex = 34;
+            this.btnPointGroup.Text = "Group";
+            this.btnPointGroup.UseVisualStyleBackColor = true;
+            this.btnPointGroup.Click += new System.EventHandler(this.btnPointGroup_Click);
+            // 
+            // btnTesseract
+            // 
+            this.btnTesseract.Location = new System.Drawing.Point(150, 588);
+            this.btnTesseract.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnTesseract.Name = "btnTesseract";
+            this.btnTesseract.Size = new System.Drawing.Size(126, 44);
+            this.btnTesseract.TabIndex = 35;
+            this.btnTesseract.Text = "OCR";
+            this.btnTesseract.UseVisualStyleBackColor = true;
+            this.btnTesseract.Click += new System.EventHandler(this.btnTesseract_Click);
+            // 
+            // btnFind
+            // 
+            this.btnFind.Location = new System.Drawing.Point(12, 588);
+            this.btnFind.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(126, 44);
+            this.btnFind.TabIndex = 36;
+            this.btnFind.Text = "Find";
+            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
+            // 
             // FormColorMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 648);
+            this.Controls.Add(this.btnFind);
+            this.Controls.Add(this.btnTesseract);
+            this.Controls.Add(this.btnPointGroup);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtSavedY);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtSavedX);
-            this.Controls.Add(this.txtSavedHex);
+            this.Controls.Add(this.txtSavedRgb);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panSavedColor);
             this.Controls.Add(this.label7);
@@ -342,8 +334,6 @@ namespace ColorTool
             this.Controls.Add(this.lblResearch);
             this.Controls.Add(this.txtProcess);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.btnGo);
-            this.Controls.Add(this.btnInt);
             this.Controls.Add(this.btnHex);
             this.Controls.Add(this.txtDiff);
             this.Controls.Add(this.label5);
@@ -351,9 +341,7 @@ namespace ColorTool
             this.Controls.Add(this.txtY);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtX);
-            this.Controls.Add(this.txtIntColor);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtHexColor);
+            this.Controls.Add(this.txtRgb);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "FormColorMain";
@@ -365,9 +353,7 @@ namespace ColorTool
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtHexColor;
-        private System.Windows.Forms.TextBox txtIntColor;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtRgb;
         private System.Windows.Forms.TextBox txtX;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -375,8 +361,6 @@ namespace ColorTool
         private System.Windows.Forms.TextBox txtDiff;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnHex;
-        private System.Windows.Forms.Button btnInt;
-        private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtProcess;
         private System.Windows.Forms.TextBox txtSearch;
@@ -385,11 +369,14 @@ namespace ColorTool
         private Button btnCompare;
         private Label label7;
         private Panel panSavedColor;
-        private TextBox txtSavedHex;
+        private TextBox txtSavedRgb;
         private Label label8;
         private Label label9;
         private TextBox txtSavedY;
         private Label label10;
         private TextBox txtSavedX;
+        private Button btnPointGroup;
+        private Button btnTesseract;
+        private Button btnFind;
     }
 }

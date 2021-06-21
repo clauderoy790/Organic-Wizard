@@ -1,24 +1,223 @@
-﻿using System;
+﻿using NLog.Targets;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using Timer = System.Timers.Timer;
+using System.Timers;
+using System.Xml.Schema;
 
 namespace Shared
 {
     public class Keyboard
     {
-        const int PauseBetweenStrokes = 50;
+        public const float KEY_DOWN_TIME = 0.2f;
+        ConcurrentDictionary<ScanCodeShort, Tuple<Timer, Action>> keydownTimers;
+        ConcurrentDictionary<ScanCodeShort, VirtualKeyShort> scanCodeMap;
+        private string window = "";
 
-        public void Send(ScanCodeShort a)
+        public Keyboard()
+        {
+            keydownTimers = new ConcurrentDictionary<ScanCodeShort, Tuple<Timer, Action>>();
+            scanCodeMap = new ConcurrentDictionary<ScanCodeShort, VirtualKeyShort>();
+        }
+
+        public void Send(ScanCodeShort key, float downTime = KEY_DOWN_TIME, Action callback = null)
+        {
+            if (WinUtils.GetActiveWindow() != this.window)
+            {
+                Stop();
+                return;
+            }
+            else if (IsKeyDownTimerActive(key))
+                return;
+
+            downTime = Math.Max(KEY_DOWN_TIME, downTime);
+
+            Timer timer = TryGetTimerForKey(key);
+            if (timer != null)
+            {
+                timer.Stop();
+                timer.Interval = downTime * 1000;
+                keydownTimers[key] = new Tuple<Timer, Action>(timer, callback);
+                VirtualKeyShort vk = GetVK(key);
+                SendInput(vk,key, KEYEVENTF.SCANCODE);
+                timer.Start();
+            }
+        }
+
+        public void SetWindow(string window)
+        {
+            this.window = window;
+            if (WinUtils.GetActiveWindow() != this.window)
+                Stop();
+        }
+
+        public void SendDown(ScanCodeShort key)
+        {
+            if (WinUtils.GetActiveWindow() != this.window)
+            {
+                Stop();
+                return;
+            }
+            else if (IsKeyDownTimerActive(key))
+            {
+                Debug.Log("This key is already being pressed");
+                return;
+            }
+
+            VirtualKeyShort code = GetVK(key);
+            SendInput(code,key);
+        }
+
+        public void Stop()
+        {
+            foreach(var pair in keydownTimers)
+            {
+                var timer = pair.Value.Item1;
+
+                if (timer  != null && timer.Enabled)
+                {
+                    timer.Elapsed -= OnKeyDownTimerOver;
+                    timer.Stop();
+                    SendUp(pair.Key);
+                }
+            }
+            keydownTimers.Clear();
+        }
+
+        public void SendUp(ScanCodeShort key)
+        {
+            if (IsKeyDownTimerActive(key))
+            {
+                Debug.Log("This key is already being pressed");
+                return;
+            }
+
+            VirtualKeyShort code = GetVK(key);
+            SendInput(code,key, KEYEVENTF.KEYUP);
+        }
+
+        public short KeyState(ScanCodeShort key)
+        {
+            int keycode = (int)key;
+            VirtualKeyShort keyShort = GetVK(key);
+            keycode = (int)(keyShort);
+            return GetKeyState(keycode);
+        }
+
+        public bool IsDown(ScanCodeShort key)
+        {
+            return KeyState(key) < 0;
+        }
+
+        private void SendInput(VirtualKeyShort key, ScanCodeShort scanCode, KEYEVENTF? flag = null)
         {
             INPUT[] Inputs = new INPUT[1];
             INPUT Input = new INPUT();
             Input.type = 1; // 1 = Keyboard Input
-            Input.U.ki.wScan = a;
-            Input.U.ki.dwFlags = KEYEVENTF.SCANCODE;
+            Input.U.ki.wScan = scanCode;
+            Input.U.ki.wVk = key;
+            Input.U.ki.dwFlags = 0;
+            if (flag.HasValue)
+            {
+                Input.U.ki.dwFlags = flag.Value;
+            }
+            Input.U.ki.time = 0;
+            Input.U.ki.dwExtraInfo = UIntPtr.Zero;
             Inputs[0] = Input;
-            SendInput(1, Inputs, INPUT.Size);
+            uint nb = SendInput(1, Inputs, INPUT.Size);
         }
+
+        private bool IsKeyDownTimerActive(ScanCodeShort key)
+        {
+            return keydownTimers.ContainsKey(key) && keydownTimers[key].Item1.Enabled;
+        }
+
+        private void OnKeyDownTimerOver(object sender, ElapsedEventArgs e)
+        {
+            if (WinUtils.GetActiveWindow() != this.window)
+            {
+                Stop();
+                return;
+            }
+            
+            Timer timer = sender as Timer;
+            timer.Stop();
+            var tuple = TryGetTupleForTimer(timer);
+            if (tuple != null)
+            {
+                VirtualKeyShort code = GetVK(tuple.Item1);
+                SendInput(code,tuple.Item1, KEYEVENTF.KEYUP);
+                tuple.Item2?.Invoke();
+            }
+        }
+
+        VirtualKeyShort GetVK(ScanCodeShort scanCode)
+        {
+            if (!scanCodeMap.ContainsKey(scanCode))
+            {
+                uint code = (uint)scanCode;
+                uint result = MapVirtualKeyA(code,(uint)MAPTYPE.MAPVK_VSC_TO_VK);
+                if (result != 0)
+                {
+                    VirtualKeyShort keyShort = (VirtualKeyShort)result;
+                    scanCodeMap[scanCode] = keyShort;
+                }
+                else
+                    throw new Exception($"Failed to Map ScanCodeShort: {scanCode} to VirtualKeyShort");
+            }
+            return scanCodeMap[scanCode];
+        }
+
+        private Timer TryGetTimerForKey(ScanCodeShort key)
+        {
+            Timer timer = null;
+            if (!keydownTimers.ContainsKey(key))
+            {
+                timer = new Timer();
+                timer.AutoReset = false;
+                timer.Elapsed += OnKeyDownTimerOver;
+            }
+            else
+            {
+                Tuple<Timer, Action> value = null;
+                if (keydownTimers.TryGetValue(key, out value))
+                {
+                    timer = value.Item1;
+                }
+            }
+
+            return timer;
+        }
+
+        private Tuple<ScanCodeShort, Action> TryGetTupleForTimer(Timer timer)
+        {
+            bool found = false;
+            Tuple<ScanCodeShort, Action> key = null;
+
+            var keys = keydownTimers.Keys;
+
+            Tuple<Timer,Action> tuple = null;
+            foreach(var k in keys)
+            {
+                if (keydownTimers.TryGetValue(k, out tuple) && tuple.Item1 == timer)
+                {
+                    key = new Tuple<ScanCodeShort, Action>(k, tuple.Item2);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+                throw new Exception("Failed to find timer entry for timer in Keyboard.cs");
+
+            return key;
+        }
+
+        [DllImport("user32.dll")]
+        internal static extern short GetKeyState(int nVirtKey);
 
         /// <summary>
         /// Declaration of external SendInput method
@@ -32,6 +231,8 @@ namespace Shared
         [DllImport("user32.dll", SetLastError = true)]
         static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
+        [DllImport("user32.dll")]
+        internal static extern uint MapVirtualKeyA(uint uCode, uint uMapType);
 
         // Declare the INPUT struct
         [StructLayout(LayoutKind.Sequential)]
@@ -77,6 +278,15 @@ namespace Shared
             Nothing = 0x00000000,
             XBUTTON1 = 0x00000001,
             XBUTTON2 = 0x00000002
+        }
+
+        [Flags]
+        public enum MAPTYPE : uint
+        {
+            MAPVK_VK_TO_CHAR = 0x00000002,
+            MAPVK_VK_TO_VSC = 0x00000000,
+            MAPVK_VSC_TO_VK = 0x00000001,
+            MAPVK_VSC_TO_VK_EX = 0x00000003
         }
 
         [Flags]
@@ -997,5 +1207,6 @@ namespace Shared
             internal short wParamL;
             internal short wParamH;
         }
+
     }
 }

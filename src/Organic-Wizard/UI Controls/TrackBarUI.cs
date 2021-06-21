@@ -8,7 +8,7 @@ namespace Organic_Wizard
 {
     public class TrackBarUI
     {
-        private const int BTN_INCREMENT = 5;
+        private const int BTN_INCREMENT = 1;
 
         private int _percent = 0;
         private Button _btnMinus;

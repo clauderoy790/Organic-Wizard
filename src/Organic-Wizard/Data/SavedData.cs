@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting;
@@ -14,8 +16,6 @@ namespace Organic_Wizard
     [Serializable]
     public class SavedData
     {
-        public const int NONE = -1;
-
         private const int NB_SUPP_SKILLS = 8;
         private const int NB_ATTACK_SKILLS = 4;
         private const int NB_REC_SKILLS = 4;
@@ -50,7 +50,7 @@ namespace Organic_Wizard
             }
         }
 
-        public static bool SupportSkills
+        public static bool UseBuffSkills
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Organic_Wizard
             }
         }
 
-        public static  bool HpRecovery
+        public static bool HpRecovery
         {
             get
             {
@@ -149,7 +149,68 @@ namespace Organic_Wizard
                 Instance._recoverySkillPercent = value;
             }
         }
+        public static int MaxTravelRange
+        {
+            get
+            {
+                return Instance._maxTravelRange;
+            }
 
+            set
+            {
+                Instance._maxTravelRange = value;
+            }
+        }
+
+        public static bool Loot
+        {
+            get
+            {
+                return Instance._loot;
+            }
+
+            set
+            {
+                Instance._loot = value;
+            }
+        }
+
+        public static bool DarkMode
+        {
+            get
+            {
+                return Instance._darkMode;
+            }
+
+            set
+            {
+                Instance._darkMode = value;
+            }
+        }
+
+
+        #endregion
+
+        static SavedData _instance = null;
+
+        #region Private Members
+
+        private int[] _attackSkills = null;
+        private int[] _recoverySkills = null;
+        private BuffSkillInfo[] _buffSkills = null;
+        private bool _attackMode = false;
+        private bool _recoveryMode = false;
+        private bool _useSupportSkills = false;
+        private bool _hpRecovery = false;
+        private bool _mpRecovery = false;
+        private int _hpRecoverySkill = Constants.NONE;
+        private int _mpRecoverySkill = Constants.NONE;
+        private int _hpRecoveryPercent = 0;
+        private int _mpRecoveryPercent = 0;
+        private int _recoverySkillPercent = 0;
+        private int _maxTravelRange = 0;
+        private bool _loot;
+        private bool _darkMode;
         #endregion
 
         private static SavedData Instance
@@ -166,7 +227,7 @@ namespace Organic_Wizard
         {
             if (pos >= 0 && pos < Instance._recoverySkills.Length)
             {
-                Instance._recoverySkills[pos] = GetValidSkillValue(skillValue);
+                Instance._recoverySkills[pos] = GetAvailableSkillValue(Instance._recoverySkills, skillValue, pos);
             }
         }
 
@@ -174,55 +235,91 @@ namespace Organic_Wizard
         {
             if (pos >= 0 && pos < Instance._attackSkills.Length)
             {
-                Instance._attackSkills[pos] = GetValidSkillValue(skillValue);
+                Instance._attackSkills[pos] = GetAvailableSkillValue(Instance._attackSkills, skillValue, pos);
             }
         }
 
-        private static int GetValidSkillValue(int nb)
+        public static void SetBuffSkillAtPos(int index, int skillNumber, bool useOnParty)
         {
-            if (nb < 0 || nb >= 10)
-                nb = NONE;
-            return nb;
+            if (index >= 0 && index < Instance._buffSkills.Length)
+            {
+                int usedIndex = GetBuffSkillIndex(skillNumber);
+
+                if (skillNumber == Constants.NONE || usedIndex == -1 || usedIndex == index)
+                {
+                    BuffSkillInfo buff = Instance._buffSkills[index] ?? new BuffSkillInfo();
+                    buff.Skill = skillNumber;
+                    buff.UseOnParty = useOnParty;
+                    Instance._buffSkills[index] = buff;
+                }
+            }
         }
 
-        static SavedData _instance = null;
+        private static int GetBuffSkillIndex(int skillNumber)
+        {
+            int index = -1;
 
-        #region Private Members
+            for (int i = 0; i < Instance._buffSkills.Length; i++)
+            {
+                if (Instance._buffSkills[i].Skill == skillNumber)
+                {
+                    index = i;
+                    break;
+                }
+            }
 
-        private int[] _attackSkills = null;
-        private int[] _recoverySkills = null;
-        private SupportSkillInfo[] _supportSkills = null;
-        private bool _attackMode = false;
-        private bool _recoveryMode = false;
-        private bool _useSupportSkills = false;
-        private bool _hpRecovery = false;
-        private bool _mpRecovery = false;
-        private int _hpRecoverySkill = NONE;
-        private int _mpRecoverySkill = NONE;
-        private int _hpRecoveryPercent = 0;
-        private int _mpRecoveryPercent = 0;
-        private int _recoverySkillPercent = 0;
-        #endregion
+            return index;
+        }
+
+        private static int GetAvailableSkillValue(int[] array, int nb, int pos)
+        {
+            if (nb < 0 || nb >= 10 || array == null)
+            {
+                return Constants.NONE;
+            }
+
+            int index = -1;
+            for (int i = 0; i < array.Length; ++i)
+            {
+                if (array[i] == nb)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            //if it doesn't exist or is the currernt pos
+            return (index == -1 || index == pos) ? nb : Constants.NONE;
+        }
 
         private SavedData()
         {
             _attackSkills = new int[NB_ATTACK_SKILLS];
             for (int i = 0; i < NB_ATTACK_SKILLS; i++)
             {
-                _attackSkills[i] = NONE;
+                _attackSkills[i] = Constants.NONE;
             }
 
             _recoverySkills = new int[NB_REC_SKILLS];
             for (int i = 0; i < NB_REC_SKILLS; i++)
             {
-                _recoverySkills[i] = NONE;
+                _recoverySkills[i] = Constants.NONE;
             }
 
-            _supportSkills = new SupportSkillInfo[NB_SUPP_SKILLS];
+            _buffSkills = new BuffSkillInfo[NB_SUPP_SKILLS];
             for (int i = 0; i < NB_SUPP_SKILLS; i++)
             {
-                _supportSkills[i] = new SupportSkillInfo();
+                _buffSkills[i] = new BuffSkillInfo();
             }
+
+            _maxTravelRange = 30;
+        }
+
+        public static int GetAttackSkillsCount()
+        {
+            if (Instance._attackSkills.Length > 0)
+                return _instance._attackSkills.Length;
+            else
+                return 0;
         }
 
         public static int GetAttackSkillAtPos(int index)
@@ -235,24 +332,34 @@ namespace Organic_Wizard
             return 0;
         }
 
-        public static int GetRecoverySkillAtPos(int index)
+        public static int GetHealSkillsCount()
+        {
+            if (Instance._recoverySkills.Length > 0)
+                return _instance._recoverySkills.Length;
+            else
+                return 0;
+        }
+
+        public static int GetHealSkillAtPos(int index)
         {
             if (Instance._recoverySkills.Length > index && index >= 0)
             {
                 return Instance._recoverySkills[index];
             }
 
-            return 0;
+            return Constants.NONE;
         }
 
-        public static SupportSkillInfo GetSupportSkillAtPos(int index)
+        public static List<BuffSkillInfo> GetBuffSkills()
         {
-            if (Instance._supportSkills.Length > index && index >= 0)
+            List<BuffSkillInfo> skills = new List<BuffSkillInfo>();
+
+            foreach (var skill in Instance._buffSkills)
             {
-                return Instance._supportSkills[index];
+                skills.Add(skill);
             }
 
-            return null;
+            return skills;
         }
 
         public static void Init()
@@ -262,6 +369,8 @@ namespace Organic_Wizard
 
             LoadSavedData();
             Save();
+
+            Theme.SetTheme(DarkMode ? Theme.ETheme.Dark : Theme.ETheme.Normal);
         }
 
         public static void Save()
@@ -275,7 +384,6 @@ namespace Organic_Wizard
             using (Stream stream = new FileStream(SAVE_FILE_PATH, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 formatter.Serialize(stream, Instance);
-                stream.Close();
             }
         }
 
@@ -305,12 +413,14 @@ namespace Organic_Wizard
         }
 
         [Serializable]
-        public class SupportSkillInfo
+        public class BuffSkillInfo
         {
-            public SupportSkillInfo()
+            public BuffSkillInfo()
             {
-                Skill = NONE;
+                Skill = Constants.NONE;
             }
+
+            public bool IsValid { get { return Skill != Constants.NONE; } }
 
             public int Skill { get; set; }
             public bool UseOnParty { get; set; }

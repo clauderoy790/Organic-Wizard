@@ -1,98 +1,148 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Timers;
+﻿using Organic_Wizard.Logic;
 using Shared;
+using System;
+using System.Collections.Generic;
+using System.Timers;
 
 namespace Organic_Wizard
 {
     public class LogicEngine
     {
-        bool FOCUS_KO_WINDOW_ON_START = true;
-        const int START_DELAY = 2000;
-        const int UPDATE_DELAY = 20;
+        public static event Action Stopped;
+        public static event Action Started;
 
-        bool _running = false;
-        Timer _initTimer = null;
-        Timer _updateTimer = null;
-        AttackerStateMachine _archerStateMachine;
-        RecoveryStateMachine _recoveryStateMachine;
+        const float START_DELAY = 1.2f;
+        const float UPDATE_DELAY = 0.1f;
+        const int MAX_ATTEMPT_INITIALIZE_SKILLBAR = 5;
+
+        bool _sendStart = false;
+        CTimer _initTimer = null;
+        CTimer _updateTimer = null;
         List<GameObject> _gos = null;
 
         public LogicEngine()
         {
             ImgUtils.Init();
+            KeyUtils.WindowToSendKeysIn = Constants.KO_WINDOW;
             _gos = new List<GameObject>();
-            //_archerStateMachine = new AttackerStateMachine();
-            //_recoveryStateMachine = new RecoveryStateMachine();
-            _initTimer = new Timer();
-            _initTimer.Elapsed += OnInitTimer;
-            _initTimer.Interval = START_DELAY;
+            _initTimer = new CTimer();
+            _initTimer.Interval = START_DELAY * 1000;
+            _initTimer.AutoReset = false;
 
-            _updateTimer = new Timer();
+            _updateTimer = new CTimer();
             _updateTimer.Elapsed += OnUpdate;
-            _updateTimer.Interval = UPDATE_DELAY;
+            _updateTimer.AutoReset = false;
+            _updateTimer.Interval = UPDATE_DELAY * 1000;
 
             GameObject go = new GameObject();
-            CharacterInfo charInfo = new CharacterInfo();
-            StopOnMinimize stopOnMin = new StopOnMinimize(ToggleStartStop);
-            go.AddComponent(charInfo);
-            //go.AddComponent(stopOnMin);
+            CharacterStateMachine sm = new CharacterStateMachine();
+            Character character = new Character(sm);
+            DirComponent direction = new DirComponent();
+            ScreenPosition screenPos = new ScreenPosition();
+            go.AddComponent(screenPos);
+            go.AddComponent(sm);
+            go.AddComponent(direction);
+            go.AddComponent(character);
             _gos.Add(go);
+            _sendStart = true;
         }
 
         private void OnInitTimer(object sender, ElapsedEventArgs e)
         {
-            if (WinUtils.GetActiveWindow() != Constants.KO_WINDOW && FOCUS_KO_WINDOW_ON_START)
+            ActionManager.Start();
+            KeyUtils.Start();
+            Inventory.Clear();
+            MouseOperations.Start();
+            _initTimer.Stop();
+            _updateTimer.Elapsed -= OnUpdate;
+            _updateTimer.Stop();
+            ActionManager.SendAction(() =>
             {
                 WinUtils.ActivateWindow(Constants.KO_WINDOW);
-            }
-            
+            }, 0.3f, () =>
+            {
+                int attempts = 0;
+                SkillBar.Reset();
+                while (!SkillBar.IsInitialized && attempts++ < MAX_ATTEMPT_INITIALIZE_SKILLBAR)
+                {
+                    SkillBar.InitSkillsInfo();
+                }
+
+                if (SkillBar.IsInitialized)
+                {
+                    _gos.ForEach(g => { g.Active = true; });
+
+                    Started?.Invoke();
+                    _sendStart = false;
+                    _updateTimer.Restart();
+                    _updateTimer.Elapsed += OnUpdate;
+                }
+                else
+                {
+                    Stop();
+                    throw new Exception("Failed to initialize SkillBarManager, aborting.");
+                }
+            });
+        }
+
+        public void Start()
+        {
+            _initTimer.Elapsed += OnInitTimer;
+            _initTimer.Restart();
+            Debug.Log("Start");
+        }
+
+        public void Stop()
+        {
+            KeyUtils.Stop();
+            MouseOperations.Stop();
+            _initTimer.Elapsed -= OnInitTimer;
             _initTimer.Stop();
-            _gos.ForEach(g => { g.Active = true; });
+            _updateTimer.Elapsed -= OnUpdate;
             _updateTimer.Stop();
-            _updateTimer.Start();
-        }
-
-        void Start()
-        {
-            Stop();
-            _initTimer.Stop();
-            _initTimer.Start();
-        }
-
-        void Stop()
-        {
-            _initTimer.Stop();
             _gos.ForEach(g => { g.Active = false; });
-            //_archerStateMachine.Stop();
-            //_recoveryStateMachine.Stop();
+            Stopped?.Invoke();
+            _sendStart = true;
+            ActionManager.Stop();
+            Debug.Log("Stop");
         }
 
         private void OnUpdate(object sender, ElapsedEventArgs e)
         {
             _updateTimer.Stop();
+            string activeWindow = WinUtils.GetActiveWindow();
+
+            if (string.IsNullOrEmpty(activeWindow) || activeWindow != Constants.KO_WINDOW)
+            {
+#if DEBUG
+                if (!activeWindow.ToLower().Contains("visual studio"))
+#endif
+                {
+                    Stop();
+                    return;
+                }
+            }
+
             Time.StartFrame();
             try
             {
-                foreach(var go in _gos)
+                foreach (var go in _gos)
                 {
                     go.Update();
                 }
+                Time.EndFrame();
+                _updateTimer.Start();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Exception: "+ex.Message);
+                Debug.Log("Exception: " + ex.Message);
+                Stop();
             }
-            Time.EndFrame();
-            _updateTimer.Start();
         }
 
         public void ToggleStartStop()
         {
-            _running = !_running;
-            if (_running)
+            if (_sendStart)
             {
                 Start();
             }

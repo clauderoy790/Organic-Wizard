@@ -8,5 +8,20 @@
     <Setting Name="AppVersion" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.0.0</Value>
     </Setting>
+    <Setting Name="GitRepoUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">git@github.com:clauderoy790/Organic-Wizard-Release.git</Value>
+    </Setting>
+    <Setting Name="GitRepoLocalPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/Git/Organic-Wizard-Release</Value>
+    </Setting>
+    <Setting Name="SSHKeyLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/Users/Claud/.ssh/id_rsa</Value>
+    </Setting>
+    <Setting Name="GitAppId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">73599</Value>
+    </Setting>
+    <Setting Name="GitTokenFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/Git/.tokens/organic-wizard.txt</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

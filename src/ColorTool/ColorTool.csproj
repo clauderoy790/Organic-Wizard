@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,8 +48,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorHelper.cs" />
     <Compile Include="FormColorCompare.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +64,24 @@
     <Compile Include="FormColorMain.Designer.cs">
       <DependentUpon>FormColorMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormFindColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFindColor.Designer.cs">
+      <DependentUpon>FormFindColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGroup.Designer.cs">
+      <DependentUpon>FormGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOCR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOCR.Designer.cs">
+      <DependentUpon>FormOCR.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormColorCompare.resx">
@@ -66,6 +89,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormColorMain.resx">
       <DependentUpon>FormColorMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFindColor.resx">
+      <DependentUpon>FormFindColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGroup.resx">
+      <DependentUpon>FormGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOCR.resx">
+      <DependentUpon>FormOCR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

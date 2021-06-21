@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorTool", "ColorTool\Colo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{994A9887-D218-4F17-93F3-EFAC3E652934}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{2B9A2AE9-7C93-487F-A11E-C5AF3CDE46A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,13 +22,16 @@ Global
 		{719FCC02-E114-49FE-8D4F-5A5ADDA4AA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{719FCC02-E114-49FE-8D4F-5A5ADDA4AA1B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F483BFBD-9053-440B-B6D4-782B5E8A64F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F483BFBD-9053-440B-B6D4-782B5E8A64F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F483BFBD-9053-440B-B6D4-782B5E8A64F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F483BFBD-9053-440B-B6D4-782B5E8A64F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{994A9887-D218-4F17-93F3-EFAC3E652934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{994A9887-D218-4F17-93F3-EFAC3E652934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{994A9887-D218-4F17-93F3-EFAC3E652934}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{994A9887-D218-4F17-93F3-EFAC3E652934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B9A2AE9-7C93-487F-A11E-C5AF3CDE46A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B9A2AE9-7C93-487F-A11E-C5AF3CDE46A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B9A2AE9-7C93-487F-A11E-C5AF3CDE46A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B9A2AE9-7C93-487F-A11E-C5AF3CDE46A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

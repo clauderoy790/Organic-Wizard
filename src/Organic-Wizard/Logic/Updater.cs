@@ -52,9 +52,7 @@ namespace Organic_Wizard
             {
                 status.Error = ex;
                 OnUpdateChecked?.Invoke(status);
-#if DEBUG
-                DebugUtils.LogError("C:/update-error.txt",ex);
-#endif
+                ExceptionLogging.EmailError(ex);
             }
             finally
             {

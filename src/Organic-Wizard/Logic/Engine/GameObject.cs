@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Organic_Wizard
 {
-    class GameObject
+    public class GameObject
     {
         List<Component> _components = null;
         private bool _active = false;
@@ -29,10 +29,26 @@ namespace Organic_Wizard
         {
             if (comp != null)
             {
+                comp.SetGameObject(this);
                 _components.Add(comp);
                 if (Active && comp.Active)
                     comp.OnEnable();
             }
+        }
+
+        public T GetComponent<T>() where T : Component{
+            T component = null;
+
+            foreach(var comp in _components)
+            {
+                if (comp is T)
+                {
+                    component = (T)comp;
+                    break;
+                }
+            }
+
+            return component;
         }
 
         public void Update()

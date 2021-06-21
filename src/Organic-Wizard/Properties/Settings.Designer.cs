@@ -46,5 +46,65 @@ namespace Organic_Wizard.Properties {
                 this["AppVersion"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("git@github.com:clauderoy790/Organic-Wizard-Release.git")]
+        public string GitRepoUrl {
+            get {
+                return ((string)(this["GitRepoUrl"]));
+            }
+            set {
+                this["GitRepoUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:/Git/Organic-Wizard-Release")]
+        public string GitRepoLocalPath {
+            get {
+                return ((string)(this["GitRepoLocalPath"]));
+            }
+            set {
+                this["GitRepoLocalPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:/Users/Claud/.ssh/id_rsa")]
+        public string SSHKeyLocation {
+            get {
+                return ((string)(this["SSHKeyLocation"]));
+            }
+            set {
+                this["SSHKeyLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("73599")]
+        public string GitAppId {
+            get {
+                return ((string)(this["GitAppId"]));
+            }
+            set {
+                this["GitAppId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:/Git/.tokens/organic-wizard.txt")]
+        public string GitTokenFilePath {
+            get {
+                return ((string)(this["GitTokenFilePath"]));
+            }
+            set {
+                this["GitTokenFilePath"] = value;
+            }
+        }
     }
 }

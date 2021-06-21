@@ -1,4 +1,5 @@
-﻿using Squirrel;
+﻿using Shared;
+using Squirrel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,16 @@ namespace Organic_Wizard
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainForm());
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("Unmanaged exception: " + ex.Message + " at " + ex.StackTrace);
+            }
         }
     }
 }
